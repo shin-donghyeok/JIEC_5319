@@ -1,5 +1,5 @@
 """
-2019. 04. 12.
+2020. 03. 02.
 Donghyeok Shin
 """
 from PIL import Image
@@ -38,10 +38,11 @@ alpha = 0
 for I in range(1, BASE + 1):
     K = 0
     for J in range(node[I-1], node[I]):
-        print(J, alpha)
+        """print(J, alpha)"""
         im = Image.new("L", (width, height), 0)
         im_raw = im.load()
 
+        """y=-3.140 + 61.28x + 49.13x^2"""
         GRAY = (int)(255 / (node[I] - node[I-1]))
         for i in range(0, row):
             for j in range(0, col):
@@ -49,7 +50,10 @@ for I in range(1, BASE + 1):
                 y = 30 + j * (base + distance)
                 for X in range(x + alpha, x + base - alpha):
                     for Y in range(y + alpha, y + base - alpha):
-                        im_raw[Y, X] = 255 - GRAY * K
+                        TEMP = (int)(256 * (pow(100 * (255 - GRAY * K) / 256 / 49 + 0.45, 0.5) - 0.62))
+                        print(TEMP)
+                        im_raw[Y, X] = TEMP
+                        """im_raw[Y, X] = 255 - GRAY * K"""
         K = K + 1
         for i in range(0, row):
             for j in range(0, col):

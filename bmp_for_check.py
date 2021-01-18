@@ -1,3 +1,7 @@
+"""
+2019. 04. 12.
+Donghyeok Shin
+"""
 from PIL import Image
 
 """##########################"""
